@@ -13,6 +13,7 @@ input.char{
         line-height:22px;
         margin:0 2px; 
         display:inline-block;
+		text-align:center;
 }
 input.readonly{
         color:#aaa;
@@ -23,6 +24,7 @@ input.readonly{
         line-height:22px;
         margin:0 2px; 
         display:inline-block;
+		text-align:center;
         }
 input.required{
         color:#000;

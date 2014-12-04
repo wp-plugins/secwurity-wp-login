@@ -30,9 +30,10 @@ class SCWL{
     private static $par = 'cyber';
     private static $deger = 'warrior';
     
-    private static $plugin_file_name = 'SeCWurity_WP_Login.php';
-    private static $plugin_folder_name = 'SeCWurity_WP_Login';
+    private static $plugin_file_name = 'secwurity-wp-login.php';
+    private static $plugin_folder_name = 'secwurity-wp-login';
     private static $plugin_name = 'SeCWurity WP Login';
+	
     
     ## ayar isimleri ##
     const op_sifre = 'SCWL_sifre'; // güvenlik şifresi
@@ -45,23 +46,21 @@ class SCWL{
     
     public function __construct(){
         $plugin_url = plugin_dir_path(__FILE__);
-        include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-        if (is_plugin_active(self::$plugin_folder_name.'/'.self::$plugin_file_name)){
+        include_once( ABSPATH . 'wp-admin/includes/plugin.php');
             self::$sifre = get_option(self::op_sifre);
             self::$sayi = get_option(self::op_sayi);
             self::$url_koruma_aktif = get_option(self::op_url_durum);
             self::$login_koruma_aktif = get_option(self::op_login_durum);
             self::$par = get_option(self::op_par);
             self::$deger = get_option(self::op_deger);
-        }
     }
     
     ## Eklenti Admin Paneli ##
     public static function admin(){
-        add_menu_page('Cyber Warrior', 'Cyber Warrior', 'manage_options', 'cyber_warrior',array('SCWL','biz_kimiz'),plugins_url( '/SeCWurity_WP_Login/images/icon.png' ), 90);
-        add_submenu_page( 'cyber_warrior', 'Cyber-Warrior', 'Who we are?', 'manage_options', 'cyber_warrior');
-        add_submenu_page( 'cyber_warrior', 'Plugin Team', 'Plugin Team', 'manage_options', 'plugin_team',array('SCWL','plugin_team'));
-        add_submenu_page( 'cyber_warrior', 'SeCWurity_WP_Login', 'SeCWurity Login', 'manage_options', 'SeCWurity_WP_Login',array('SCWL','ayarlar'));
+        add_menu_page('Cyber Warrior', 'Cyber Warrior', 'manage_options', 'cyber_warrior',array('SCWL','biz_kimiz'),plugins_url( '/secwurity-wp-login/images/icon.png' ), 90);
+        add_submenu_page( 'cyber_warrior', 'Cyber-Warrior', __('Hakkımızda'), 'manage_options', 'cyber_warrior');
+        add_submenu_page( 'cyber_warrior', 'Plugin Team', __('Plug-in Grubu'), 'manage_options', 'plugin_team',array('SCWL','plugin_team'));
+        add_submenu_page( 'cyber_warrior', 'SeCWurity_WP_Login', __('Eklenti Ayarları'), 'manage_options', 'secwurity-wp-login',array('SCWL','ayarlar'));
     }
     
     ## Who Are We? Sayfası ##
@@ -78,7 +77,7 @@ class SCWL{
     
     ## Eklentiye ayarlar butonu için ##
     static function ayarlar_butonu($links){
-        $settings_link = '<a href="admin.php?page='.self::$plugin_folder_name.'">'.__('Settings','SeCWurity_WP_Login').'</a>';
+        $settings_link = '<a href="admin.php?page='.self::$plugin_folder_name.'">'.__('Settings','secwurity-wp-login').'</a>';
             array_push( $links, $settings_link );
             return $links;
     }
@@ -131,8 +130,15 @@ class SCWL{
     }
     
     public static function admin_script(){
-        wp_enqueue_script(self::$plugin_name, plugins_url( self::$plugin_folder_name.'/js/toggle.js'), false, "1.0");
+        wp_enqueue_script(self::$plugin_name, plugins_url( self::$plugin_folder_name.'/js/toggle.js'), false);
     }
+	
+	public static function login_script() {
+		?>
+		<script type="text/javascript" src="<?php print plugins_url( self::$plugin_folder_name).'/js/jquery.js'; ?>"></script>
+		<?php
+		wp_enqueue_script( 'pass',plugins_url( self::$plugin_folder_name).'/js/pass.js', false );
+	}
     
     public static function login_form(){
         
@@ -141,7 +147,7 @@ class SCWL{
         $s_sayi = get_option(self::op_sayi);
         ## Şifrenin karakter sayısı hesaplanıyor ##
         $k_sayi = strlen($sifre);
-        ## Sorulacak karakter sayısı şifre karakter sayısından fazla ise 1 karakter sorulacak ##
+        ## Sorulacak karakter sayısı, şifre karakter sayısından fazla ise 1 karakter sorulacak ##
         if($s_sayi > $k_sayi or !is_numeric($s_sayi) or $s_sayi < 1){ $s_sayi = 1; }
 
         ## Şifre karakterleri dizide depolanıyor. ##
@@ -150,10 +156,8 @@ class SCWL{
         $sayilar= array();
         $i=0;
         while($i<$s_sayi){
-            $rastgele=rand(0,$k_sayi);
-            if (in_array($rastgele,$sayilar)){
-                    continue;
-            }else{
+            $rastgele=rand(0,$k_sayi-1);
+            if (!in_array($rastgele,$sayilar)){
                     $sayilar[]=$rastgele;
             $i++;
             }
@@ -163,7 +167,7 @@ class SCWL{
         print '<label for="">Güvenlik Şifreniz</label>';
             for($i = 0; $i<=$k_sayi-1; $i++){
                 if(in_array($i,$sayilar)){
-                        print '<input type="text" class="char"  name="'.$i.'" class="required"  required="required"/>';
+                        print '<input type="text" class="char"  name="'.$i.'" class="required" maxlength="1" required="required"/>';
                 }else{
                         print '<input type="text" class="readonly" value="*" readonly="readonly" />';
                 }
@@ -219,9 +223,9 @@ class SCWL{
                        <p class="login_warn_bottom">'.self::$plugin_name.'</p>';
                 exit;
             }else if(!isset($_GET[$d_adi]) or $_GET[$d_adi] != $d_deger){
-                print '<p class="login_warn">'; _e('Giriş sayfasının adresi değiştirildi, lütfen doğru adresi giriniz..'); print '</p>
-                <p class="login_warn_bottom">'; _e(self::$plugin_name); print '</p>';
-                exit;
+				$url = get_bloginfo('url').'/404.php';
+                header('Location: '.$url);
+				die();
             }
     }
     
@@ -299,5 +303,7 @@ if(get_option(SCWL::op_url_durum)){
 
 ## login sayfası stil dosyası ##
 add_action('login_head',array('SCWL','login_style'));
+add_action('login_head',array('SCWL','login_style'));
+add_action('login_enqueue_scripts',array('SCWL','login_script'));
 
 ?>
