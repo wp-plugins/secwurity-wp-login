@@ -3,7 +3,7 @@
  * Plugin Name:       SeCWurity WP Login
  * Plugin URI:        http://www.cyber-warrior.org
  * Description:       SeCWurity WP Login protects your login page against different attack types...
- * Version:           1.0
+ * Version:           2.0
  * Author:            slmsmsk
  * Author URI:        http://www.cyber-warrior.org/Forum/pop_up_profile.asp?profile=185271&ForumID=16
  * Text Domain:       SeCWurity_WP_Login
