@@ -1,6 +1,6 @@
 === SeCWurity WP Login ===
 Contributors: slmsmsk
-Donate link: http://arduinoturk.com
+Donate link: http://ssimsek.net
 Tags: login,security,brute,force,attack,anti,kelogger
 Requires at least: 3.0.1
 Tested up to: 4.0
