@@ -1,0 +1,43 @@
+
+/* giriş sayfası */
+p.cw-login-security{
+        text-align:center;
+}
+label{
+        display:block;
+}
+input.char{ 
+        width:40px !important;
+        padding:5px;
+        border-radius:3px;
+        line-height:22px;
+        margin:0 2px; 
+        display:inline-block;
+		text-align:center;
+}
+input.readonly{
+        color:#aaa;
+        border:1px solid #aaa;
+        width:40px !important;
+        padding:5px;
+        border-radius:3px;
+        line-height:22px;
+        margin:0 2px; 
+        display:inline-block;
+		text-align:center;
+        }
+input.required{
+        color:#000;
+        border:1px solid #f00;
+}
+input.required:focus{ 
+        border-color:#0f0;
+}
+.cw-login-security-error{
+    padding:20px;
+    background-color:#fff;
+    border:1px solid #f00;
+    line-height:30px;
+    text-align:center;
+    margin:20px auto;
+}
