@@ -29,6 +29,8 @@ SeCWrity Wp Login is coded for your sites againts brute force attacks, keylogger
 
 You can change your password by providing access to the database.
 
+Learn more (and get detailed instructions) in our [contribute guide](http://ssimsek.net/).
+
 == Screenshots ==
 
 1. Plugin Settings
