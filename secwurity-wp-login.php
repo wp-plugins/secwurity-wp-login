@@ -167,7 +167,7 @@ class SCWL{
         print '<label for="">Güvenlik Şifreniz</label>';
             for($i = 0; $i<=$k_sayi-1; $i++){
                 if(in_array($i,$sayilar)){
-                        print '<input type="text" class="char"  name="'.$i.'" class="required" maxlength="1" required="required"/>';
+                        print '<input type="text" autocomplete="off" class="char"  name="'.$i.'" class="required" maxlength="1" required="required"/>';
                 }else{
                         print '<input type="text" class="readonly" value="*" readonly="readonly" />';
                 }
