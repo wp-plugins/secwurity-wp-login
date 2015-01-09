@@ -1,4 +1,4 @@
-/*jQuery(document).ready(function(){
+jQuery(document).ready(function(){
     var sayi = jQuery('.cw-box').length;
     if(sayi>1){
         jQuery('.cw-box').slideUp();
