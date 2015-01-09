@@ -6,7 +6,7 @@
  * Version:           2.0
  * Author:            slmsmsk
  * Author URI:        http://www.cyber-warrior.org/Forum/pop_up_profile.asp?profile=185271&ForumID=16
- * Text Domain:       SeCWurity_WP_Login
+ * Text Domain:       secwurity-wp-login
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path:       /languages

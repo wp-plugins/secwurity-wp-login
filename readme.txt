@@ -3,7 +3,7 @@ Contributors: slmsmsk
 Donate link: http://ssimsek.net
 Tags: login,security,brute,force,attack,anti,kelogger
 Requires at least: 3.0.1
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: 2
 Version: 2.0
 License: GPLv2 or later
