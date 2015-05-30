@@ -3,7 +3,7 @@ Contributors: slmsmsk
 Donate link: http://ssimsek.net
 Tags: login,security,brute,force,attack,anti,kelogger
 Requires at least: 3.0.1
-Tested up to: 4.1
+Tested up to: 4.2.2
 Stable tag: 2
 Version: 2.0
 License: GPLv2 or later
@@ -42,5 +42,11 @@ Learn more (and get detailed instructions) in our [contribute guide](http://ssim
 == Changelog ==
 
 = 1.0 ==
+Some bugs were fixed.
 
-= 1.1 ==
+= 2.0 ==
+New features were added.
+Interface design was updated.
+
+= 2.1 ==
+Performance is increased by reducing the number of files.

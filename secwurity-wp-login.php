@@ -3,7 +3,7 @@
  * Plugin Name:       SeCWurity WP Login
  * Plugin URI:        http://www.cyber-warrior.org
  * Description:       SeCWurity WP Login protects your login page against different attack types...
- * Version:           2.0
+ * Version:           2.1
  * Author:            slmsmsk
  * Author URI:        http://www.cyber-warrior.org/Forum/pop_up_profile.asp?profile=185271&ForumID=16
  * Text Domain:       secwurity-wp-login
@@ -30,7 +30,6 @@ class SCWL{
     private static $par = 'cyber';
     private static $deger = 'warrior';
     
-    private static $plugin_file_name = 'secwurity-wp-login.php';
     private static $plugin_folder_name = 'secwurity-wp-login';
     private static $plugin_name = 'SeCWurity WP Login';
 	
@@ -45,14 +44,13 @@ class SCWL{
     
     
     public function __construct(){
-        $plugin_url = plugin_dir_path(__FILE__);
         include_once( ABSPATH . 'wp-admin/includes/plugin.php');
-            self::$sifre = get_option(self::op_sifre);
-            self::$sayi = get_option(self::op_sayi);
-            self::$url_koruma_aktif = get_option(self::op_url_durum);
-            self::$login_koruma_aktif = get_option(self::op_login_durum);
-            self::$par = get_option(self::op_par);
-            self::$deger = get_option(self::op_deger);
+        self::$sifre = get_option(self::op_sifre);
+        self::$sayi = get_option(self::op_sayi);
+        self::$url_koruma_aktif = get_option(self::op_url_durum);
+        self::$login_koruma_aktif = get_option(self::op_login_durum);
+        self::$par = get_option(self::op_par);
+        self::$deger = get_option(self::op_deger);
     }
     
     ## Eklenti Admin Paneli ##
@@ -65,14 +63,35 @@ class SCWL{
     
     ## Who Are We? Sayfası ##
     public static function biz_kimiz(){
-         $plugin_url = plugin_dir_path(__FILE__);
-         require $plugin_url.'/htmls/cw.html';
+?>
+<div class='cw-login-security'>
+    <h2><font color="#01DF01">C</font>yber-<font color="#01DF01">W</font>arrior TIM</h2>
+    <img src='http://www.Cyber-Warrior.Org/images/Banner/05.gif' alt='Cyber-Warrior'/><br>
+    <div class='cw-content' style="padding:10px 0;">
+        <p>Grubumuz kurulduğu 2001 yılından beri kesintisiz  yayınını sürdürmektedir.</p>
+        <p>Cyber-Warrior Bu süreç içerisinde birçok siteye ekol olmuş, Bilişim güvenliği konusunda uzman yüzlerce kişi yetiştirmiştir.</p>
+        <p>2007 Yılında yapılan yasal düzenlemeler grubumuzunda mücadelesini verdiği birçok konuyu kapsamına almıştır.</p>
+        <p>Genel anlamda hukuki boşluk doldurulmuştur.</p>
+        <p>Bu sebeple mücadelemiz 2007 Yılından itibaren Yasalar çerçevesinde legal olarak devam etmektedir.</p>
+    </div>
+</div>
+<?php
     }
     
     ## Plugin Team Sayfası ##
     public static function plugin_team(){
-         $plugin_url = plugin_dir_path(__FILE__);
-         require $plugin_url.'/htmls/plugin_team.html';
+?>
+<div class='cw-login-security'>
+    <h2>Plugin-Tim</h2>
+    <img src='http://www.Cyber-Warrior.Org/images/Banner/05.gif' alt='Cyber-Warrior'/><br>
+    <div class='cw-content'>
+        <div class="cw-head">Tim Lideri</div>
+        <p><a href='http://www.cyber-warrior.org/Forum/pop_up_profile.asp?profile=100858'>BMNR</a></p>
+        <div class="cw-head">Tim Personeli</div>
+        <p><a href='http://www.cyber-warrior.org/Forum/pop_up_profile.asp?profile=185271'>prostorm</a></p>
+    </div>
+</div>
+<?php
     }
     
     ## Eklentiye ayarlar butonu için ##
@@ -305,5 +324,3 @@ if(get_option(SCWL::op_url_durum)){
 add_action('login_head',array('SCWL','login_style'));
 add_action('login_head',array('SCWL','login_style'));
 add_action('login_enqueue_scripts',array('SCWL','login_script'));
-
-?>
